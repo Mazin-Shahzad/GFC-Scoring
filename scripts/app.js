@@ -1,13 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const showLoading = () => {
+        const spinner = document.createElement('div');
+        spinner.className = 'loading-spinner';
+        document.body.appendChild(spinner);
+    };
+
+    const hideLoading = () => {
+        const spinner = document.querySelector('.loading-spinner');
+        if (spinner) {
+            document.body.removeChild(spinner);
+        }
+    };
+
     // Handle initial form submission
     const initialForm = document.getElementById('initial-form');
     if (initialForm) {
         initialForm.addEventListener('submit', function (e) {
             e.preventDefault();
             
-            const fighter1 = document.getElementById('fighter1').value;
-            const fighter2 = document.getElementById('fighter2').value;
+            const fighter1 = document.getElementById('fighter1').value.trim();
+            const fighter2 = document.getElementById('fighter2').value.trim();
             const rounds = parseInt(document.getElementById('rounds').value, 10);
+
+            if (fighter1.length < 2 || fighter2.length < 2) {
+                document.getElementById('form-feedback').innerText = 'Fighter names must be at least 2 characters long.';
+                return;
+            }
 
             localStorage.setItem('fighter1', fighter1);
             localStorage.setItem('fighter2', fighter2);
@@ -56,12 +74,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
             };
 
+            showLoading();
             tablesContainer.innerHTML = `
                 ${createTable(fighter1)}
                 ${createTable(fighter2)}
             `;
+            hideLoading();
 
-            // Function to validate and format input values on blur
             const validateInput = (event) => {
                 const input = event.target;
                 let value = parseFloat(input.value);
@@ -75,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateAverages();
             };
 
-            // Function to update average scores live
             const updateAverages = () => {
                 const tables = document.querySelectorAll('table');
                 tables.forEach(table => {
@@ -107,10 +125,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             };
 
-            // Attach input validation on blur (when the input field loses focus)
             document.querySelectorAll('.score-input').forEach(input => {
                 input.addEventListener('blur', validateInput);
-                input.addEventListener('input', updateAverages); // Update averages as you type
+                input.addEventListener('input', updateAverages);
             });
 
             scoringForm.addEventListener('submit', function (e) {
@@ -157,7 +174,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Handle results page
     const resultsContainer = document.getElementById('results');
     if (resultsContainer) {
         const fighter1 = localStorage.getItem('fighter1');

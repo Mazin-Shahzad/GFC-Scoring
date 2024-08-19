@@ -8,13 +8,13 @@ body, h1, label, input, button {
 /* Basic styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #333333; /* Solid gray background */
+    color: #ffffff; /* White text for contrast */
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #333333; /* Match header to body background */
+    color: #BF9000; /* Yellow text for header */
     text-align: center;
     padding: 1rem;
 }
@@ -30,7 +30,10 @@ h1 {
 }
 
 main {
-    padding: 1rem;
+    padding: 2rem; /* Increased padding for better spacing */
+    background-color: #333333; /* Match main content to body background */
+    border-radius: 8px; /* Rounded corners */
+    /* Remove the box shadow */
 }
 
 form {
@@ -41,40 +44,101 @@ form {
 
 label {
     font-weight: bold;
+    color: #BF9000; /* Yellow labels */
 }
 
-input {
-    padding: 0.5rem;
+input[type="text"], input[type="number"] {
+    border-radius: 4px;
+    border: 1px solid #555555; /* Darker gray border for inputs */
+    padding: 0.75rem; /* Increased padding for touch targets */
     font-size: 1rem;
+    background-color: #444444; /* Dark gray input background */
+    color: #ffffff; /* White text in inputs */
 }
 
 button {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #BF9000; /* Yellow-gold background */
+    color: #333333; /* Dark text for contrast */
     border: none;
     padding: 0.75rem;
     font-size: 1rem;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #a87900; /* Darker yellow-gold on hover */
 }
 
-/* Styling for the tables in the scoring page */
+/* Styling for the tables */
 table {
-    width: 100%;
+    border-spacing: 0;
     border-collapse: collapse;
+    width: 100%;
     margin-bottom: 1rem;
+    background-color: #333333; /* Match table background to body */
+    color: #ffffff; /* White text */
+    border: 1px solid #555555; /* Softer gray border for less prominence */
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 0.5rem;
+    padding: 0.75rem;
     text-align: center;
+    border: 1px solid #555555; /* Softer gray border for cells */
 }
 
 th {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #BF9000; /* Yellow-gold header */
+    color: #333333; /* Dark text for contrast */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #444444; /* Slightly lighter gray rows for distinction */
+}
+
+tfoot tr {
+    background-color: #444444; /* Slightly lighter gray footer */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem; /* Adjust heading size for smaller screens */
+    }
+
+    main {
+        padding: 1rem; /* Reduced padding on smaller screens */
+    }
+
+    input[type="text"], input[type="number"] {
+        font-size: 0.9rem; /* Smaller font size for inputs */
+        padding: 0.5rem; /* Reduced padding for smaller screens */
+    }
+
+    button {
+        font-size: 0.9rem; /* Smaller font size for buttons */
+        padding: 0.5rem; /* Reduced padding for buttons */
+    }
+
+    table {
+        font-size: 0.9rem; /* Smaller font size for table text */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.25rem; /* Further reduced heading size for very small screens */
+    }
+
+    input[type="text"], input[type="number"] {
+        font-size: 0.8rem; /* Further reduced font size for inputs */
+    }
+
+    button {
+        font-size: 0.8rem; /* Further reduced font size for buttons */
+    }
+
+    table {
+        font-size: 0.8rem; /* Further reduced font size for table text */
+    }
 }
